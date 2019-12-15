@@ -2,15 +2,15 @@
 Packer builds
 
 # build machine
-* subscription id
+subscription id
 *	az account show --query "{ subscription_id: id }"
-* tenant id
+tenant id
 *	az account list
-* object id, this is only needed for Windows
+object id, this is only needed for Windows
 *	get-AzureRmRoleAssignment
 
 
-* setup azure packer
+setup azure packer
 * create resource group
 * New-AzResourceGroup -Name "myResourceGroup" -Location "East US"
 
@@ -30,7 +30,7 @@ Setup linux machine
 * sudo apt-get install azure-functions-core-tools
 * curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
-* az login
+az login
 
 * $sp = New-AzADServicePrincipal -DisplayName "PackerServicePrincipal"
 * $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($sp.Secret)
@@ -39,7 +39,7 @@ Setup linux machine
 * $sp.ApplicationId:
 * az login --service-principal --username APP_ID --password PASSWORD --tenant TENANT_ID
 
-* list images
+list images
 * https://docs.microsoft.com/en-us/azure/virtual-machines/linux/cli-ps-findimage
 * az vm image list --output table
 * az vm image list --offer Debian --all --output table
