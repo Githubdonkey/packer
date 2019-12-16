@@ -47,14 +47,12 @@ list images
 * az vm image list-skus --location westus --publisher Canonical --offer UbuntuServer --output table
 * az vm image show --location westus --urn Canonical:UbuntuServer:18.04-LTS:latest
 
-logging
+#logging
 (UNIX)
-
-$ export PACKER_LOG_PATH="/var/log/packer.log"
-$ export PACKER_LOG=10
-$ packer build -debug ubuntu_64.json
+* export PACKER_LOG_PATH="/var/log/packer.log"
+* export PACKER_LOG=10
+* packer build -debug ubuntu_64.json
 (WINDOWS)
-
-$ set PACKER_LOG=10
-$ set PACKER_LOG_PATH=c:\temp\packer log
-$ packer build -debug ubuntu_64.json
+* set PACKER_LOG=10
+* set PACKER_LOG_PATH=c:\temp\packer log
+* packer build -debug ubuntu_64.json
