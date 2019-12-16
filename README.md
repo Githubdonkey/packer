@@ -20,6 +20,7 @@ $plainPassword = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR
 $plainPassword:
 $spc.ApplicationId:
 ```
+az login --service-principal --username APP_ID --password PASSWORD --tenant TENANT_ID
 
 ## Logging
 ###### UNIX
@@ -31,6 +32,16 @@ $spc.ApplicationId:
 * Build machine: set PACKER_LOG=1
 * Build machine: set PACKER_LOG_PATH=c:\temp\packer log
 * Build machine: packer build -debug ubuntu_64.json
+
+## List images
+* https://docs.microsoft.com/en-us/azure/virtual-machines/linux/cli-ps-findimage
+```
+az vm image list --output table
+az vm image list --offer Debian --all --output table
+az vm image list --location westeurope --offer Deb --publisher credativ --sku 8 --all --output table
+az vm image list-skus --location westus --publisher Canonical --offer UbuntuServer --output table
+az vm image show --location westus --urn Canonical:UbuntuServer:18.04-LTS:latest
+```
 
 setup azure packer
 * create resource group
@@ -52,21 +63,7 @@ setup azure packer
 * sudo apt-get install azure-functions-core-tools
 * curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 
-az login
 
-* $sp = New-AzADServicePrincipal -DisplayName "PackerServicePrincipal"
-* $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($sp.Secret)
-* $plainPassword = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
-* $plainPassword:
-* $sp.ApplicationId:
-* az login --service-principal --username APP_ID --password PASSWORD --tenant TENANT_ID
 
-list images
-* https://docs.microsoft.com/en-us/azure/virtual-machines/linux/cli-ps-findimage
-* az vm image list --output table
-* az vm image list --offer Debian --all --output table
-* az vm image list --location westeurope --offer Deb --publisher credativ --sku 8 --all --output table
-* az vm image list-skus --location westus --publisher Canonical --offer UbuntuServer --output table
-* az vm image show --location westus --urn Canonical:UbuntuServer:18.04-LTS:latest
 
 
