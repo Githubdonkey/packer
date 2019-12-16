@@ -5,10 +5,21 @@ Packer builds
 ```
 $sp = Get-AzureRmADServicePrincipal -DisplayNameBeginsWith Packer
 Application ID	$sp.applicationId.guid
-object id	$sp.Id.ToString()
+object ID	$sp.Id.ToString()
 ```
-* 
-* 
+```
+$sub = Get-AzureRmSubscription
+Tenant ID	$sub.TenantId
+Subscription ID	$sub.SubscriptionId
+```
+```
+### create Service Principal
+$spc = New-AzADServicePrincipal -DisplayName "PackerServicePrincipal"
+$BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($spc.Secret)
+$plainPassword = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
+$plainPassword:
+$spc.ApplicationId:
+```
 
 # build machine
 subscription id
