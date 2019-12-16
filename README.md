@@ -1,7 +1,7 @@
 # packer
 Packer builds
 
-# Azure info
+## Azure info
 ```
 $sp = Get-AzureRmADServicePrincipal -DisplayNameBeginsWith Packer
 Application ID	$sp.applicationId.guid
