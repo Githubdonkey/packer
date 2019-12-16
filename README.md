@@ -21,14 +21,16 @@ $plainPassword:
 $spc.ApplicationId:
 ```
 
-# build machine
-subscription id
-*	az account show --query "{ subscription_id: id }"
-tenant id
-*	az account list
-object id, this is only needed for Windows
-*	get-AzureRmRoleAssignment
+## logging
+###### (UNIX)
+* Build machine: export PACKER_LOG_PATH="/home/test/packer.log"
+* Build machine: export PACKER_LOG=1
+* Build machine: packer build -debug ubuntu_64.json
 
+###### (WINDOWS)
+* Build machine: set PACKER_LOG=1
+* Build machine: set PACKER_LOG_PATH=c:\temp\packer log
+* Build machine: packer build -debug ubuntu_64.json
 
 setup azure packer
 * create resource group
@@ -67,13 +69,4 @@ list images
 * az vm image list-skus --location westus --publisher Canonical --offer UbuntuServer --output table
 * az vm image show --location westus --urn Canonical:UbuntuServer:18.04-LTS:latest
 
-#logging
-* (UNIX)
-* export PACKER_LOG_PATH="/home/test/packer.log"
-* export PACKER_LOG=1
-* packer build -debug ubuntu_64.json
 
-* (WINDOWS)
-* set PACKER_LOG=1
-* set PACKER_LOG_PATH=c:\temp\packer log
-* packer build -debug ubuntu_64.json
