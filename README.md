@@ -1,6 +1,15 @@
 # packer
 Packer builds
 
+# Azure info
+```
+$sp = Get-AzureRmADServicePrincipal -DisplayNameBeginsWith Packer
+Application ID	$sp.applicationId.guid
+object id	$sp.Id.ToString()
+```
+* 
+* 
+
 # build machine
 subscription id
 *	az account show --query "{ subscription_id: id }"
