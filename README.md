@@ -36,7 +36,7 @@ setup azure packer
 * create resource group
 * New-AzResourceGroup -Name "myResourceGroup" -Location "East US"
 
-Setup linux machine
+## Setup linux machine
 
 * wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 * sudo dpkg -i packages-microsoft-prod.deb
