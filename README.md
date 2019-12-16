@@ -12,8 +12,8 @@ $sub = Get-AzureRmSubscription
 Tenant ID	$sub.TenantId
 Subscription ID	$sub.SubscriptionId
 ```
+## Create Service Principal
 ```
-### create Service Principal
 $spc = New-AzADServicePrincipal -DisplayName "PackerServicePrincipal"
 $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($spc.Secret)
 $plainPassword = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
@@ -21,13 +21,13 @@ $plainPassword:
 $spc.ApplicationId:
 ```
 
-## logging
-###### (UNIX)
+## Logging
+###### UNIX
 * Build machine: export PACKER_LOG_PATH="/home/test/packer.log"
 * Build machine: export PACKER_LOG=1
 * Build machine: packer build -debug ubuntu_64.json
 
-###### (WINDOWS)
+###### WINDOWS
 * Build machine: set PACKER_LOG=1
 * Build machine: set PACKER_LOG_PATH=c:\temp\packer log
 * Build machine: packer build -debug ubuntu_64.json
