@@ -13,6 +13,8 @@ Tenant ID	$sub.TenantId
 Subscription ID	$sub.SubscriptionId
 ```
 ## Create Service Principal
+
+###### CLI
 ```
 $spc = New-AzADServicePrincipal -DisplayName "PackerServicePrincipal"
 $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($spc.Secret)
@@ -21,6 +23,12 @@ $plainPassword:
 $spc.ApplicationId:
 ```
 az login --service-principal --username APP_ID --password PASSWORD --tenant TENANT_ID
+
+###### Portal
+https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal
+```
+All services > Active Directory > App registrations
+```
 
 ## Logging
 ###### UNIX
@@ -67,5 +75,9 @@ setup azure packer
 * wget https://releases.hashicorp.com/packer/${VER}/packer_${VER}_linux_amd64.zip
 * unzip packer_${VER}_linux_amd64.zip
 * sudo mv packer /usr/local/bin
-
-
+###### Set Env Variables for build process
+ ```
+ export azure_subscription_id=
+ export azure_client_id=
+ export azure_client_secret=
+```
