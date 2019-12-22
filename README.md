@@ -48,7 +48,7 @@ setup azure packer
 * New-AzResourceGroup -Name "myResourceGroup" -Location "East US"
 
 ## Setup linux machine
-
+* sudo apt-get install unzip
 * wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 * sudo dpkg -i packages-microsoft-prod.deb
 * sudo apt-get update
@@ -62,8 +62,10 @@ setup azure packer
 * sudo apt-get update
 * sudo apt-get install azure-functions-core-tools
 * curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-
-
-
+Packer - install or update(sudo rm -r /usr/local/bin/)
+* VER=1.4.5
+* wget https://releases.hashicorp.com/packer/${VER}/packer_${VER}_linux_amd64.zip
+* unzip packer_${VER}_linux_amd64.zip
+* sudo mv packer /usr/local/bin
 
 
