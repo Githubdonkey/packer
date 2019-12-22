@@ -62,7 +62,7 @@ setup azure packer
 * sudo apt-get update
 * sudo apt-get install azure-functions-core-tools
 * curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
-Packer - install or update(sudo rm -r /usr/local/bin/)
+###### Packer - install or update(sudo rm -r /usr/local/bin/)
 * VER=1.4.5
 * wget https://releases.hashicorp.com/packer/${VER}/packer_${VER}_linux_amd64.zip
 * unzip packer_${VER}_linux_amd64.zip
