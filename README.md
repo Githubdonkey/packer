@@ -77,7 +77,8 @@ setup azure packer
 * sudo mv packer /usr/local/bin
 ###### Set Env Variables for build process
  ```
- export azure_subscription_id=
- export azure_client_id=
+ export azure_app_id=
  export azure_client_secret=
+ export azure_sub_id=
+ export azure_tenant_id=
 ```
