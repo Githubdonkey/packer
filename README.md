@@ -1,8 +1,7 @@
 # packer
 Packer builds
 
-## Azure info
-Cloud Shell(Powershell)
+## Azure Portal Cloud Shell(Powershell)
 ```
 $sp = Get-AzureRmADServicePrincipal -DisplayNameBeginsWith Packer
 $sp.applicationId.guid # Application ID	
@@ -26,15 +25,8 @@ $spc.ApplicationId
 * create resource group
 * New-AzResourceGroup -Name "myResourceGroup" -Location "East US"
 ```
-###### Set Envirornment Var for build machine
-```
-export azure_app_id=
-export azure_client_secret=
-export azure_sub_id=
-export azure_tenant_id=
-```
-###### Service Principal login
-az login --service-principal --username $azure_app_id --password $azure_client_secret --tenant $azure_tenant_id
+
+
 
 ###### Portal
 https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal
@@ -64,22 +56,35 @@ az vm image show --location westus --urn Canonical:UbuntuServer:18.04-LTS:latest
 ```
 
 ## Setup linux machine
-* sudo apt-get install unzip
-* wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-* sudo dpkg -i packages-microsoft-prod.deb
-* sudo apt-get update
-* sudo apt-get install apt-transport-https
-* sudo apt-get update
-* sudo apt-get install dotnet-sdk-3.1
-* sudo apt install curl
-* curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
-* sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
-* sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-$(lsb_release -cs)-prod $(lsb_release -cs) main" > /etc/apt/sources.list.d/dotnetdev.list'
-* sudo apt-get update
-* sudo apt-get install azure-functions-core-tools
-* curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+```
+sudo apt-get install unzip
+wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+sudo apt-get update
+sudo apt-get install apt-transport-https
+sudo apt-get update
+sudo apt-get install dotnet-sdk-3.1
+sudo apt install curl
+curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+sudo mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-ubuntu-$(lsb_release -cs)-prod $(lsb_release -cs) main" > /etc/apt/sources.list.d/dotnetdev.list'
+sudo apt-get update
+sudo apt-get install azure-functions-core-tools
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+```
 ###### Packer - install or update(sudo rm -r /usr/local/bin/)
-* VER=1.4.5
-* wget https://releases.hashicorp.com/packer/${VER}/packer_${VER}_linux_amd64.zip
-* unzip packer_${VER}_linux_amd64.zip
-* sudo mv packer /usr/local/bin
+```
+VER=1.4.5
+wget https://releases.hashicorp.com/packer/${VER}/packer_${VER}_linux_amd64.zip
+unzip packer_${VER}_linux_amd64.zip
+sudo mv packer /usr/local/bin
+```
+###### Set Envirornment Var for build machine
+```
+export azure_app_id=
+export azure_client_secret=
+export azure_sub_id=
+export azure_tenant_id=
+```
+###### Service Principal login
+az login --service-principal --username $azure_app_id --password $azure_client_secret --tenant $azure_tenant_id
