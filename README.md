@@ -2,27 +2,39 @@
 Packer builds
 
 ## Azure info
+Cloud Shell(Powershell)
 ```
 $sp = Get-AzureRmADServicePrincipal -DisplayNameBeginsWith Packer
-Application ID	$sp.applicationId.guid
-object ID	$sp.Id.ToString()
+$sp.applicationId.guid # Application ID	
+$sp.Id.ToString() # Object ID	
 ```
 ```
 $sub = Get-AzureRmSubscription
-Tenant ID	$sub.TenantId
-Subscription ID	$sub.SubscriptionId
+$sub.TenantId # Tenant ID	
+$sub.SubscriptionId # Subscription ID	
 ```
-## Create Service Principal
-
-###### CLI
+###### Create Service Principal
 ```
 $spc = New-AzADServicePrincipal -DisplayName "PackerServicePrincipal"
 $BSTR = [System.Runtime.InteropServices.Marshal]::SecureStringToBSTR($spc.Secret)
 $plainPassword = [System.Runtime.InteropServices.Marshal]::PtrToStringAuto($BSTR)
-$plainPassword:
-$spc.ApplicationId:
+$plainPassword
+$spc.ApplicationId
 ```
-az login --service-principal --username APP_ID --password PASSWORD --tenant TENANT_ID
+###### setup azure packer
+```
+* create resource group
+* New-AzResourceGroup -Name "myResourceGroup" -Location "East US"
+```
+###### Set Envirornment Var for build machine
+```
+export azure_app_id=
+export azure_client_secret=
+export azure_sub_id=
+export azure_tenant_id=
+```
+###### Service Principal login
+az login --service-principal --username $azure_app_id --password $azure_client_secret --tenant $azure_tenant_id
 
 ###### Portal
 https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal
@@ -30,7 +42,7 @@ https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-ser
 All services > Active Directory > App registrations
 ```
 
-## Logging
+## Set up Packer Logging
 ###### UNIX
 * Build machine: export PACKER_LOG_PATH="/home/test/packer.log"
 * Build machine: export PACKER_LOG=1
@@ -41,7 +53,7 @@ All services > Active Directory > App registrations
 * Build machine: set PACKER_LOG_PATH=c:\temp\packer log
 * Build machine: packer build -debug ubuntu_64.json
 
-## List images
+## Azure List images
 * https://docs.microsoft.com/en-us/azure/virtual-machines/linux/cli-ps-findimage
 ```
 az vm image list --output table
@@ -50,10 +62,6 @@ az vm image list --location westeurope --offer Deb --publisher credativ --sku 8 
 az vm image list-skus --location westus --publisher Canonical --offer UbuntuServer --output table
 az vm image show --location westus --urn Canonical:UbuntuServer:18.04-LTS:latest
 ```
-
-setup azure packer
-* create resource group
-* New-AzResourceGroup -Name "myResourceGroup" -Location "East US"
 
 ## Setup linux machine
 * sudo apt-get install unzip
@@ -75,10 +83,3 @@ setup azure packer
 * wget https://releases.hashicorp.com/packer/${VER}/packer_${VER}_linux_amd64.zip
 * unzip packer_${VER}_linux_amd64.zip
 * sudo mv packer /usr/local/bin
-###### Set Env Variables for build process
- ```
- export azure_app_id=
- export azure_client_secret=
- export azure_sub_id=
- export azure_tenant_id=
-```
